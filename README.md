@@ -7,8 +7,8 @@ Update 0:
 3. Image support is not yet given to the E-Commerce site (this site is an E Commerce site).
 
 How to Install?
-Step 1: Copy the lsm folder in htdocs folder in XAMPP.
-Step 2: Switch on apache and mysql in XAMPP Control Panel,
-Step 3: Import the hartisans.sql in phpmyadmin.
-Step 4: Search "http://localhost/lsm/" in your browser search bar and the site should be displayed.
-End;
+1. Copy the lsm folder in htdocs folder in XAMPP.
+2. Switch on apache and mysql in XAMPP Control Panel.
+3. Import the hartisans.sql in phpmyadmin.
+4. Search "http://localhost/lsm/" in your browser search bar and the site should be displayed.
+5. Test.
