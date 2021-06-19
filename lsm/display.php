@@ -13,7 +13,7 @@ if($_GET['x']!='O' && $_GET['x']!='R' && $_GET['x']!='G' && $_GET['x']!='A')
 {
   die("Invalid x");
 }
-$sql="SELECT products.sr_no,products.title,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id WHERE category = :x";
+$sql="SELECT products.sr_no,products.img1,products.title,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id WHERE category = :x";
 $stmt=$pdo->prepare($sql);
 $stmt->execute(array(
   ':x' => $_GET['x'],
@@ -21,6 +21,7 @@ $stmt->execute(array(
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 require_once "head.php";
 ?>
+<link rel="stylesheet" href="css.css">
 <div class="container-fluid">
 <div class="row">
   <?php require_once "leftcolumn.php"; ?>
@@ -47,7 +48,7 @@ require_once "head.php";
         }
         ?>
       </h1>
-      <h3></h3>
+      <br>
       <div class="fakeimg"  style="min-height:450px">
         <?php
         if($rows===false)
@@ -58,7 +59,11 @@ require_once "head.php";
         {
           foreach($rows as $row)
           {
-            echo("<div><a href='view.php?x=".$row['sr_no']."'>&quot;".$row['title']."&quot;&emsp;-by ".$row['fn']." ".$row['ln']." </a></div></br>");
+            echo("<div class=\"cardsale\">");
+            echo("<h1>".$row['title']."</h1>");
+            echo("<h5>-by ".$row['fn']." ".$row['ln']."</h5>");
+            echo("<br><img src=pic/".$row['img1']." alt=".$row['img1']."></img>");
+            echo("<br><br><a href='view.php?x=".$row['sr_no']."'> Buy </a></br></br></div></br>");
           }
         }
       ?>

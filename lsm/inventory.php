@@ -8,7 +8,7 @@ require_once "pdo.php";
 require_once "head.php";
 
 ?>
-
+<div class="container-fluid">
 <div class="row">
   <?php require_once "leftcolumn.php"; ?>
   <div class="col-sm-6">
@@ -129,5 +129,5 @@ require_once "head.php";
  </div>
   <?php require_once "rightcolumn.php"; ?>
 </div>
-
+</div>
 <?php require_once "footer.php"; ?>

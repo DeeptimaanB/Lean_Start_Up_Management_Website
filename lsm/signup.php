@@ -14,21 +14,21 @@ if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) &&
 		$row=$stmt->fetch(PDO::FETCH_ASSOC);
 		if($row===false)
 		{
-      $type;
-      if($_POST['submit']=="Sign Up As Customer")
-      {
-        $type='C';
-      }
-      if($_POST['submit']=="Sign Up As Seller")
-      {
-        $type='S';
-      }
+      		$type;
+      		if($_POST['submit']=="Sign Up As Customer")
+      		{
+        		$type='C';
+      		}
+      		if($_POST['submit']=="Sign Up As Seller")
+      		{
+      		  	$type='S';
+      		}
 			$hash=hash('md5', microtime());
 			$sql= "INSERT Into temp(process,type,fn,ln,gender,email,pass) values(:pr,:t,:f,:l,:g,:e,:p)";
 			$stmt= $pdo->prepare($sql);
 			$stmt->execute(array(
 				':pr'=> $hash,
-        ':t'=> $type,
+        		':t'=> $type,
 				':f'=> $_POST['fname'],
 				':l'=> $_POST['lname'],
 				':g'=> $_POST['gender'],
@@ -37,7 +37,7 @@ if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) &&
 			));
 			$to = $_POST['email'];
 			$subject = 'Confirm Account';
-			$message = "Click on the link to confirm account http://localhost/lsm/confirm.php?x=".$hash;
+			$message = "Click on the link to confirm account ".$site."/lsm/confirm.php?x=".$hash;
 			if(mail($to, $subject, $message)){
 			    $msg= 'An email has been sent to your mail id for account confirmation. It might take upto 10 minutes.';
 			} else{

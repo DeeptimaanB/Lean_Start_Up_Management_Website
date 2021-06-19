@@ -27,7 +27,7 @@ if(isset($_POST['email']))
     ));
     $to = $_POST['email'];
     $subject = 'Update Email';
-    $message = "Click on the link to confirm email. http://localhost/lsm/changemail.php?x=".$hash;
+    $message = "Click on the link to confirm email. ".$site."/lsm/changemail.php?x=".$hash;
     if(mail($to, $subject, $message)){
         $msg= 'An email has been sent to your new mail for confirmation.<br> It might take upto 10 minutes. <br> Please close the page.';
     }

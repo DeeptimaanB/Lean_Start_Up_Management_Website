@@ -27,15 +27,6 @@ $msg="";
 
 if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['gender']) && isset($_POST['phno']) && isset($_POST['address']))
 {
-  $sql="SELECT email FROM users WHERE BINARY email = :e AND user_id != :ui";
-  $stmt= $pdo->prepare($sql);
-  $stmt->execute(array(
-    ':e'=> $_POST['email'],
-    ':ui'=> $_SESSION['user'],
-  ));
-  $data = $stmt->fetch(PDO::FETCH_ASSOC);
-  if($data===FALSE)
-  {
     $sql= "UPDATE users SET  fn = :f, ln = :l, gender = :g,ph_no = :p, address = :a WHERE user_id = :ui";
 		$stmt= $pdo->prepare($sql);
 		$stmt->execute(array(
@@ -47,11 +38,6 @@ if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['gender']) &
       ':ui'=>$_SESSION['user'],
 		));
     $msg="Your changes have been saved.";
-  }
-  else
-  {
-    $msg="The given username already exists.";
-  }
 
 	}
 

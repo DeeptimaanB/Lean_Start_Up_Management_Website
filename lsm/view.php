@@ -153,7 +153,7 @@ else
 
 
 /*Extracting content from database as per the get value*/
-$sql = "SELECT products.likes,products.views,products.dateCreated,products.dateEdited,products.title,products.content,products.category,products.sr_no,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id Where sr_no = :s";
+$sql = "SELECT products.img1,products.img2,products.img3,products.img4,products.img5,products.likes,products.views,products.dateCreated,products.dateEdited,products.title,products.content,products.category,products.sr_no,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id Where sr_no = :s";
 $stmt = $pdo->prepare($sql);
 $stmt -> execute(array(
   ':s' => $_GET['x'],
@@ -177,6 +177,22 @@ require_once "head.php";
          <?php
          foreach ( $data as $row ) {
              echo("<h1><b>".htmlentities($row['title'])."</b></h1>");
+             echo("<div style=\"flex-direction: row;\">");
+             echo("<img src=pic/".$row['img1']." alt=".$row['img1']." style=\"width:200px;height:200px;object-fit:cover;margin:3px;\"></img>");
+             echo("<img src=pic/".$row['img2']." alt=".$row['img1']." style=\"width:200px;height:200px;object-fit:cover;margin:3px;\"></img>");
+             if(isset($row['img3'])&&$row['img3']!="")
+             {
+              echo("<img src=pic/".$row['img3']." alt=".$row['img3']." style=\"width:200px;height:200px;object-fit:cover;margin:3px;\"></img>");
+             }
+             if(isset($row['img4'])&&$row['img4']!="")
+             {
+              echo("<img src=pic/".$row['img4']." alt=".$row['img4']." style=\"width:200px;height:200px;object-fit:cover;margin:3px;\"></img>");
+             }
+             if(isset($row['img5'])&&$row['img5']!="")
+             {
+              echo("<img src=pic/".$row['img5']." alt=".$row['img5']." style=\"width:200px;height:200px;object-fit:cover;margin:3px;\"></img>");
+             }
+             echo("</div>");
              echo($row['content']);
              echo("<br>");
              echo("<br>");

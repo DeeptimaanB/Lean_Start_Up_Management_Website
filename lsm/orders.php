@@ -46,8 +46,8 @@ require_once "head.php";
           <tr>
             <th>Item</th>
             <th>Buyer</th>
-            <th>Order Placed</th>
             <th>Address</th>
+            <th>Order Placed</th>
             <th>Completed</th>
             <th>Change Status</th>
           </tr>

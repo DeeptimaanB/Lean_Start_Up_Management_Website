@@ -8,6 +8,7 @@
 
 require_once "head.php";
 ?>
+<link rel="stylesheet" href="css.css">
 <div class="container-fluid">
 <div class="row">
   <?php require_once "leftcolumn.php"; ?>
@@ -19,13 +20,17 @@ require_once "head.php";
       <br>
       <div>
         <?php
-        $sql = "SELECT products.sr_no,products.title,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id WHERE category = 'A' ORDER BY likes DESC LIMIT 5";
+        $sql = "SELECT products.img1,products.sr_no,products.title,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id WHERE category = 'A' ORDER BY likes DESC LIMIT 5";
         $stmt = $pdo->query($sql);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($rows as $row)
         {
-          echo("<div style='text-align:center;'><a href='view.php?x=".$row['sr_no']."'>&quot;".$row['title']."&quot;&emsp;-by ".$row['fn']." ".$row['ln']." </a></div></br>");
+            echo("<div class=\"cardsale\">");
+            echo("<h1>".$row['title']."</h1>");
+            echo("<h5>-by ".$row['fn']." ".$row['ln']."</h5>");
+            echo("<br><img src=pic/".$row['img1']." alt=".$row['img1']."></img>");
+            echo("<br><br><a href='view.php?x=".$row['sr_no']."'> Buy </a></br></br></div></br>");
         }
          ?></div>
       </div>
@@ -39,13 +44,17 @@ require_once "head.php";
       <br>
       <div>
         <?php
-        $sql = "SELECT products.sr_no,products.title,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id WHERE category = 'O' ORDER BY likes DESC LIMIT 5";
+        $sql = "SELECT products.img1,products.sr_no,products.title,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id WHERE category = 'O' ORDER BY likes DESC LIMIT 5";
         $stmt = $pdo->query($sql);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($rows as $row)
         {
-          echo("<div style='text-align:center;'><a href='view.php?x=".$row['sr_no']."'>&quot;".$row['title']."&quot;&emsp;-by ".$row['fn']." ".$row['ln']." </a></div></br>");
+            echo("<div class=\"cardsale\">");
+            echo("<h1>".$row['title']."</h1>");
+            echo("<h5>-by ".$row['fn']." ".$row['ln']."</h5>");
+            echo("<br><img src=pic/".$row['img1']." alt=".$row['img1']."></img>");
+            echo("<br><br><a href='view.php?x=".$row['sr_no']."'> Buy </a></br></br></div></br>");
         }
          ?>
       </div>
@@ -60,13 +69,17 @@ require_once "head.php";
       <br>
       <div>
         <?php
-        $sql = "SELECT products.sr_no,products.title,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id WHERE category = 'R' ORDER BY likes DESC LIMIT 5";
+        $sql = "SELECT products.img1,products.sr_no,products.title,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id WHERE category = 'R' ORDER BY likes DESC LIMIT 5";
         $stmt = $pdo->query($sql);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($rows as $row)
         {
-          echo("<div style='text-align:center;'><a href='view.php?x=".$row['sr_no']."'>&quot;".$row['title']."&quot;&emsp;-by ".$row['fn']." ".$row['ln']." </a></div></br>");
+            echo("<div class=\"cardsale\">");
+            echo("<h1>".$row['title']."</h1>");
+            echo("<h5>-by ".$row['fn']." ".$row['ln']."</h5>");
+            echo("<br><img src=pic/".$row['img1']." alt=".$row['img1']."></img>");
+            echo("<br><br><a href='view.php?x=".$row['sr_no']."'> Buy </a></br></br></div></br>");
         }
          ?></div>
       </div>
@@ -81,13 +94,17 @@ require_once "head.php";
       </div>
       <div>
         <?php
-        $sql = "SELECT products.sr_no,products.title,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id WHERE category = 'G' ORDER BY likes DESC LIMIT 5";
+        $sql = "SELECT products.img1,products.sr_no,products.title,users.fn,users.ln FROM products JOIN users ON products.user_id=users.user_id WHERE category = 'G' ORDER BY likes DESC LIMIT 5";
         $stmt = $pdo->query($sql);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($rows as $row)
         {
-          echo("<div style='text-align:center;'><a href='view.php?x=".$row['sr_no']."'>&quot;".$row['title']."&quot;&emsp;-by ".$row['fn']." ".$row['ln']." </a></div></br>");
+            echo("<div class=\"cardsale\">");
+            echo("<h1>".$row['title']."</h1>");
+            echo("<h5>-by ".$row['fn']." ".$row['ln']."</h5>");
+            echo("<br><img src=pic/".$row['img1']." alt=".$row['img1']."></img>");
+            echo("<br><br><a href='view.php?x=".$row['sr_no']."'> Buy </a></br></br></div></br>");
         }
          ?>
       </div>

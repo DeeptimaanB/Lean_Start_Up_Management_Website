@@ -1,0 +1,19 @@
+.cardsale{
+    margin: 5px;
+    border-style: solid;
+    border: 4;
+    border-color: black;
+    max-width: auto;
+    max-height: auto;
+    text-align: center;
+    overflow: hidden;
+
+}
+.cardsale:hover {
+    box-shadow: black;
+}
+.cardsale img {
+    width:200px;height:auto;object-fit:cover;object-position:50% 50%;
+}
+
+
