@@ -1,5 +1,7 @@
 <?php
 require_once 'pdo.php';
+require_once 'mailserver.php';
+
 session_start();
 if(isset($_GET['x']) && isset($_SESSION['user']) && $_SESSION['user']!=0)
 {
@@ -43,26 +45,37 @@ if(isset($_GET['x']) && isset($_SESSION['user']) && $_SESSION['user']!=0)
     {
       $buyer=$row['email'];
     }
-    $to = $seller;
-    $subject = 'Transaction Alert';
-    $message = "Someone with email ".$buyer." has brought your product with Product ID ".$pi." Please dispatch the product.";
+    
+    /* Send mail to seller*/
+    $mail->setFrom('developer.deeptimaanbanerjee@gmail.com', 'Deeptimaan Banerjee');
+		$mail->addAddress($seller);
+		$mail->isHTML(true);                    
+		$mail->Subject = 'Transaction Alert';
+		$mail->Body    = "Someone with email ".$buyer." has brought your product with Product ID ".$pi." Please dispatch the product.";
+		if($mail->send())
+		{
+			$msg=  'An order mail has been sent to the seller.<br>';
+		}
+		else
+		{
+			$msg= 'Unable to send email to your email address. Please try again.';
+		}
 
-    if(mail($to, $subject, $message)){
-        echo 'An order mail has been sent to the seller.<br>';
-    } else{
-        echo 'Unable to send email to seller. Please try again.<br>';
-    }
-    $to = $buyer;
-    $subject = 'Transaction Alert';
-    $message = "Your order ".$title." has been placed. To talk to the seller contact ".$seller.".";
-
-    if(mail($to, $subject, $message)){
-        echo 'A transaction mail has been sent to your email.<br>';
-    } else{
-        echo 'Unable to send email. Please try again.<br>';
-    }
-
-
+    /* Send mail to buyer*/
+    $mail->setFrom('developer.deeptimaanbanerjee@gmail.com', 'Deeptimaan Banerjee');
+		$mail->addAddress($buyer);
+		$mail->isHTML(true);                    
+		$mail->Subject = 'Transaction Alert';
+		$mail->Body    = "Your order ".$title." has been placed. To talk to the seller contact ".$seller.".";
+		if($mail->send())
+		{
+			$msg=  'An order mail has been sent to the seller.<br>';
+		}
+		else
+		{
+			$msg= 'Unable to send email to your email address. Please try again.';
+		}
+   
   }
 }
 echo("Go back to home page? <a href=index.php> Home </a>");

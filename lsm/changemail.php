@@ -25,15 +25,21 @@ if(isset($_POST['email']))
       ':e'=> $_POST['email'],
       ':u'=> $_SESSION['user'],
     ));
-    $to = $_POST['email'];
-    $subject = 'Update Email';
-    $message = "Click on the link to confirm email. ".$site."/lsm/changemail.php?x=".$hash;
-    if(mail($to, $subject, $message)){
-        $msg= 'An email has been sent to your new mail for confirmation.<br> It might take upto 10 minutes. <br> Please close the page.';
-    }
-    else{
-        $msg= 'Unable to send email to your email address. Please try again.';
-    }
+
+    $mail->setFrom('developer.deeptimaanbanerjee@gmail.com', 'Deeptimaan Banerjee');
+		$mail->addAddress($_POST['email']);
+		$mail->isHTML(true);                    
+		$mail->Subject = 'Update Email';
+		$mail->Body    = "Click on the link to confirm email. ".$site."/changemail.php?x=".$hash;
+		if($mail->send())
+		{
+			$msg= 'An email has been sent to your new mail for confirmation.<br> It might take upto 10 minutes. <br> Please close the page.';
+		}
+		else
+		{
+			$msg= 'Unable to send email to your email address. Please try again.';
+		}
+			
     $_POST = array();
   }
   else

@@ -48,14 +48,21 @@ if(isset($_POST['email']))
       ':pr'=> $hash,
       ':e'=> $_POST['email'],
     ));
-    $to = $_POST['email'];
-    $subject = 'Reset Password';
-    $message = "Click on the link to reset password. ".$site."/lsm/resetPassword.php?x=".$hash;
-    if(mail($to, $subject, $message)){
-        $msg= 'An email has been sent to your mail id for resetting password.<br> It might take upto 10 minutes. <br> Please close the page.';
-    } else{
-        $msg= 'Unable to send email to your email address. Please try again.';
-    }
+
+    $mail->setFrom('developer.deeptimaanbanerjee@gmail.com', 'Deeptimaan Banerjee');
+		$mail->addAddress($_POST['email']);
+		$mail->isHTML(true);                    
+		$mail->Subject = 'Reset Password';
+		$mail->Body    = "Click on the link to reset password. ".$site."/resetPassword.php?x=".$hash;
+		if($mail->send())
+		{
+			$msg= 'An email has been sent to your mail id for resetting password.<br> It might take upto 10 minutes. <br> Please close the page.';
+		}
+		else
+		{
+			$msg= 'Unable to send email to your email address. Please try again.';
+		}
+
     $_POST = array();
   }
   else

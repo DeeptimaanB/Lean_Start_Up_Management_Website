@@ -1,5 +1,6 @@
 <?php
 require_once "pdo.php";
+require_once "mailserver.php";
 $msg="";
 if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['gender']) && isset($_POST['psw']))
 {
@@ -35,14 +36,21 @@ if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) &&
 				':e'=> $_POST['email'],
 				':p'=> $_POST['psw'],
 			));
-			$to = $_POST['email'];
-			$subject = 'Confirm Account';
-			$message = "Click on the link to confirm account ".$site."/lsm/confirm.php?x=".$hash;
-			if(mail($to, $subject, $message)){
-			    $msg= 'An email has been sent to your mail id for account confirmation. It might take upto 10 minutes.';
-			} else{
-			    $msg= 'Unable to send email to your email address. Please try again.';
+			$mail->setFrom('developer.deeptimaanbanerjee@gmail.com', 'Deeptimaan Banerjee');
+			$mail->addAddress($_POST['email']);
+			$mail->isHTML(true);                    
+			$mail->Subject = 'Confirm Account';
+			$mail->Body    = "Click on the link to confirm account ".$site."/confirm.php?x=".$hash;
+			if($mail->send())
+			{
+				$msg= 'An email has been sent to your mail id for account confirmation. It might take upto 10 minutes.';
 			}
+			else
+			{
+				$msg= 'Unable to send email to your email address. Please try again.';
+			}
+			
+			
 		}
 		else
 		{
